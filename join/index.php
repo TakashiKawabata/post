@@ -1,5 +1,5 @@
 <p>次のフォームに必須事項をご記入ください</p>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="index.php" method="post" enctype="multipart/form-data">
   <dl>
     <dt>ニックネーム<span class="required">必須</span></dt>
     <dd><input type="text" name="name" size="35" maxlength="255" /></dd>

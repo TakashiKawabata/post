@@ -33,7 +33,8 @@ if (!empty($_POST)) {
   <dl>
     <dt>ニックネーム<span class="required">必須</span></dt>
     <dd>
-      <input type="text" name="name" size="35" maxlength="255" />
+      <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>"/>
+     <!--  htmlspecialchars...セキュリティ対策。ユーザー入力の際は記述すべし。  -->
       <?php if($error['name'] == 'blank'): ?>
       <p class="error">* ニックネームを入力してください</p>
       <?php endif; ?>

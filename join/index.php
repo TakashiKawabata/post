@@ -1,22 +1,25 @@
 <?php
-session_start(); //
+session_start();
+if (!empty($_POST)) {
+  //ここでPOSTが空でないときに以下を確認（フォームは送信されている）
+  if ($_POST['name'] == '') {
+    $error['name'] = 'blank';
+  }
+  if ($_POST['email'] == '') {
+  //↑（）の打ち間違いでかなりタイムロス。以後要注意
+    $error['email'] = 'blank';
+  }
+  if (strlen($_POST['password']) < 4 ) {
+  //string + length = strlen
+    $error['password'] = 'length';
+  }
+  if ($_POST['password'] == '') {
+    $error['password'] = 'blank';
+  }
 
-if (!empty($_POST)){ //ここでPOSTが空でないときに以下を確認（フォームは送信されている）
-  if($_POST['name']==''){
-    $error['name']='blank';
-  }
-  if($_POST)['email']==''{
-    $error['email']='blank';
-  }
-  if(strlen($_POST['password'])<4){ //string + length = strlen
-    $error['password']='length';
-  }
-  if($_POST['password']==''){
-    $error['password']='blank';
-  }
-
-  if(empty($error)){ //$error配列が空ならセッションに値を保存
-    $_SESSION['join']=$_POST;
+  if (empty($error)) {
+  //$error配列が空ならセッションに値を保存
+    $_SESSION['join'] = $_POST;
     header('Location: check.php');
     exit();
   }
@@ -29,7 +32,12 @@ if (!empty($_POST)){ //ここでPOSTが空でないときに以下を確認（�
 <form action="index.php" method="post" enctype="multipart/form-data">
   <dl>
     <dt>ニックネーム<span class="required">必須</span></dt>
-    <dd><input type="text" name="name" size="35" maxlength="255" /></dd>
+    <dd>
+      <input type="text" name="name" size="35" maxlength="255" />
+      <?php if($error['name'] == 'blank'): ?>
+      <p class="error">* ニックネームを入力してください</p>
+      <?php endif; ?>
+    </dd>
     <dt>メールアドレス<span class="required">必須</span></dt>
     <dd><input type="text" name="email" size="35" maxlength="255" /></dd>
     <dt>パスワード<span class="required">必須</span></dt>

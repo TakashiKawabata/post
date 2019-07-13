@@ -76,6 +76,7 @@ if (!empty($_POST)) {
     <?php endif; ?>
     <?php if (!empty($error)): ?>
     <p class="error">* 画像を改めて指定してください</p>
+    <!-- error配列が空ではない場合（何かしら入力ミスなどがあった場合）再度画像指定を促す -->
     <?php endif; ?>
     </dd>
   </dl>

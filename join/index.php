@@ -39,8 +39,13 @@ if (!empty($_POST)) {
     exit();
   }
 }
-?>
 
+if($_REQUEST['action'] == 'rewrite'){
+  $_POST = $_SESSION['join'];
+  $error['rewrite'] = true;
+}
+?>
+<!-- 書き直し -->
 
 
 <p>次のフォームに必須事項をご記入ください</p>

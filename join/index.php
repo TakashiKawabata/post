@@ -70,7 +70,14 @@ if (!empty($_POST)) {
       <?php endif; ?>
     </dd>
     <dt>写真など</dt>
-    <dd><input type="file" name="image" size="35" /></dd>
+    <dd><input type="file" name="image" size="35" />
+    <?php if($error['image'] == 'type'): ?>
+    <p class="error">* 写真は「.jpg」か「.gif」を指定してください</p>
+    <?php endif; ?>
+    <?php if (!empty($error)): ?>
+    <p class="error">* 画像を改めて指定してください</p>
+    <?php endif; ?>
+    </dd>
   </dl>
   <div><input type="submit" value="入力内容を確認する" /></div>
 

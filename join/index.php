@@ -16,10 +16,25 @@ if (!empty($_POST)) {
   if ($_POST['password'] == '') {
     $error['password'] = 'blank';
   }
+  $fileName = $_FILES['image']['name'];
+  if (!empty($fileName)){
+    $ext = substr($fileName, -3);
+    //substr...文字列から一部分だけを切り取る。ここでは「-3」で「後ろから3文字目」を切り取る
+    //ここでは'jpg'や'gif'が該当するように設定
+    if ($ext != 'jpg' && $ext != 'gif'){
+      $error['image'] = 'type';
+      //拡張子が'jpg'と'gif'でない場合にエラーメッセージが出るように設定
+    }
+  }
 
   if (empty($error)) {
   //$error配列が空ならセッションに値を保存
+    $image = date('YmdHis') . $_FILES['image']['name'];
+    //ファイル名は被らないように時間を使用
+    move_uploaded_file($_FILES['image']['tmp_name'], '../member_picture/' . $image);
+    //move_updated_file...アップロードされたファイルを新しい位置へ移動
     $_SESSION['join'] = $_POST;
+    $_SESSION['join']['image'] = $image;
     header('Location: check.php');
     exit();
   }

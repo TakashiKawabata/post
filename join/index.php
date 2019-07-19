@@ -46,8 +46,23 @@ if($_REQUEST['action'] == 'rewrite'){
 }
 ?>
 <!-- 書き直し -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>なんでも掲示板</title>
 
+  <link rel="stylesheet" href="../style.css" />
+</head>
 
+<body>
+<div id="wrap">
+  <div id="head">
+    <h1>会員登録</h1>
+  </div>
+  <div id="content">
 <p>次のフォームに必須事項をご記入ください</p>
 <form action="index.php" method="post" enctype="multipart/form-data">
   <dl>
@@ -88,3 +103,4 @@ if($_REQUEST['action'] == 'rewrite'){
   <div><input type="submit" value="入力内容を確認する" /></div>
 
 </form>
+</div>
